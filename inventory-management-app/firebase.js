@@ -2,15 +2,17 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
 
+
 const firebaseConfig = {
-    apiKey: "AIzaSyDk-SDib_tL-IaU85nPJ14_wzAKYO2nV24",
-    authDomain: "inventory-management-app-5d3bd.firebaseapp.com",
-    projectId: "inventory-management-app-5d3bd",
-    storageBucket: "inventory-management-app-5d3bd.appspot.com",
-    messagingSenderId: "1060682005915",
-    appId: "1:1060682005915:web:94e2c72c499ee71cc8353e",
-    measurementId: "G-GKF6K45230"
-  };
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
+};
+
 
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
