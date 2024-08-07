@@ -64,20 +64,23 @@ export default function Home() {
   }, [searchTerm, inventory])
 
   const addItem = async (item, quantity) => {
+    // Ensure quantity is defined and is a number, defaulting to 1 if not
+    const parsedQuantity = quantity ? parseInt(quantity, 10) : 1;
+  
     const docRef = doc(collection(firestore, 'inventory'), item)
     const docSnap = await getDoc(docRef)
     
     if (docSnap.exists()) {
       const data = docSnap.data()
       const currentQuantity = data.quantity
-      const parsedQuantity = parseInt(quantity, 10)
       await setDoc(docRef, { quantity: currentQuantity + parsedQuantity })
     } else {
-      await setDoc(docRef, { quantity: 1 })
+      await setDoc(docRef, { quantity: parsedQuantity })
     }
     
     await updateInventory()
   }
+  
 
   const removeItem = async (item) => {
     try {
